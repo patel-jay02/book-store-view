@@ -1,0 +1,120 @@
+<div class="d-sm-flex align-items-center justify-content-between mb-4" style="padding: 30px 30px 0px 30px !important;">
+    <h1 class="h3 mb-0 text-gray-800">{{_id? 'Edit':'Add'}} Book</h1>
+</div>
+
+
+<div class="outlet-content" style="margin: 40px;">
+
+    <form class="user" [formGroup]="bookForm">
+        <div class="row">
+            <div class="col-6" style="padding: 0px 10px 10px 0px;">
+                <div class="form-group">
+                    <label>Book Name</label>
+                    <input type="text" formControlName="bookName" id="bookName" name="bookName" class="form-control" min="1">
+                    <div class="error input-error" style="width: auto;padding: 5px; color: brown;"
+                        *ngIf="controls.bookName.invalid && (submitted || (controls.bookName.dirty || controls.bookName.touched))">
+                        <div *ngIf="controls.bookName.errors?.['required']">
+                            Book Name is required.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6" style="padding: 0px 10px 10px 0px;">
+                <div class="form-group">
+                    <label>Author</label>
+                    <input type="text" formControlName="author" id="author" name="author" class="form-control" min="1">
+                    <div class="error input-error" style="width: auto;padding: 5px; color: brown;"
+                        *ngIf="controls.author.invalid && (submitted || (controls.author.dirty || controls.author.touched))">
+                        <div *ngIf="controls.author.errors?.['required']">
+                            Author is required.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6" style="padding: 0px 10px 10px 0px;">
+                <div class="form-group">
+                    <label>Description</label>
+                    <input type="text" formControlName="description" id="description" name="description" class="form-control" min="1">
+                    <div class="error input-error" style="width: auto;padding: 5px; color: brown;"
+                        *ngIf="controls.description.invalid && (submitted || (controls.description.dirty || controls.description.touched))">
+                        <div *ngIf="controls.description.errors?.['required']">
+                            Description is required.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6" style="padding: 0px 10px 10px 0px;">
+                <div class="form-group">
+                    <label>Price</label>
+                    <input type="number" formControlName="price" id="price" name="price" class="form-control" min="1">
+                    <div class="error input-error" style="width: auto;padding: 5px; color: brown;"
+                        *ngIf="controls.price.invalid && (submitted || (controls.price.dirty || controls.price.touched))">
+                        <div *ngIf="controls.price.errors?.['required']">
+                            Price is required.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6" style="padding: 0px 10px 10px 0px;">
+                <div class="form-group">
+                    <label>Total Reader</label>
+                    <input type="number" formControlName="totalReader" id="totalReader" name="totalReader" class="form-control" min="1">
+                    <div class="error input-error" style="width: auto;padding: 5px; color: brown;"
+                        *ngIf="controls.totalReader.invalid && (submitted || (controls.totalReader.dirty || controls.totalReader.touched))">
+                        <div *ngIf="controls.totalReader.errors?.['required']">
+                            Total Reader is required.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6" style="padding: 0px 10px 10px 0px;">
+                <div class="form-group">
+                    <label>Book Type</label>
+                    <input type="text" formControlName="bookType" id="bookType" name="bookType" class="form-control" min="1">
+                    <div class="error input-error" style="width: auto;padding: 5px; color: brown;"
+                        *ngIf="controls.bookType.invalid && (submitted || (controls.bookType.dirty || controls.bookType.touched))">
+                        <div *ngIf="controls.bookType.errors?.['required']">
+                            Book Type is required.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6" style="padding: 0px 10px 10px 0px;">
+                <div class="form-group">
+                    <label>ISBN</label>
+                    <input type="text" formControlName="isbn" id="isbn" name="isbn" class="form-control" min="1">
+                    <div class="error input-error" style="width: auto;padding: 5px; color: brown;"
+                        *ngIf="controls.isbn.invalid && (submitted || (controls.isbn.dirty || controls.isbn.touched))">
+                        <div *ngIf="controls.isbn.errors?.['required']">
+                            ISBN is required.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6" style="padding: 0px 10px 10px 0px;">
+                <div class="form-group">
+                    <label>Published</label>
+                    <input type="text" formControlName="published" id="published" name="published" class="form-control" min="1">
+                    <div class="error input-error" style="width: auto;padding: 5px; color: brown;"
+                        *ngIf="controls.published.invalid && (submitted || (controls.published.dirty || controls.published.touched))">
+                        <div *ngIf="controls.published.errors?.['required']">
+                            Published is required.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="col-6" style="padding: 0px 10px 10px 0px;">
+                <div class="m-40">
+                    <button mat-raised-button (click)="submitForm()" style="background-color: #6CE0C5; border: none;" class="btn btn-primary btn-user btn-block">
+                        Save
+                    </button> &nbsp;
+                    <button mat-raised-button (click)="back()" style="background-color: #D8263B;" class="btn btn-danger btn-user btn-block">
+                        Cancel
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+</div>

@@ -1,0 +1,58 @@
+<div class="container">
+  <div class="col-sm-12">
+    <div class="row">
+      <div class="col-sm-6" style="padding: 30px 30px 0px 30px !important;">
+        <mat-card-header>
+          <mat-card-title style="font-size: 25px;">
+            Books
+          </mat-card-title>
+        </mat-card-header>
+      </div>
+      <div class="col-sm-6" style="padding: 30px 10px 0px 10px !important;">
+        <div class="float-right" style="text-align: right;">
+          <button type="button" style="background-color: #D8263B; border: none;" class="btn btn-primary" routerLink="/book/add/0"><i
+              style="color: white;" class="fa fa-plus"></i></button> &nbsp;
+        </div>
+      </div>
+    </div>
+    <br>
+    <div class="table table-responsive" style="padding: 0px 10px 0px 10px !important;">
+      <table class="table table-bordered" style="border: thin #D8263B;">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Book Name</th>
+            <th>Author</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody *ngIf="books && books.length > 0">
+          <tr *ngFor="let book of books; let i = index">
+            <td>{{i+1}}</td>
+            <td><a routerLink="/book/details/{{book._id}}">{{ book.name }}</a></td>
+            <td>{{ book.author }}</td>
+            <td>{{ book.description }}</td>
+            <td>{{ book.price | currency: "INR"  }}</td>
+            <td>
+              <button class="float-right btn btn-primary btn-sm" style="text-align: right; background-color: #D8263B; border: none;"
+                data-tooltip="Delete" (click)="deleteBookConfirm(book?._id)">
+                <i style="color: white;" class="fa fa-trash"></i>
+              </button> &nbsp;
+              <button class="float-right btn btn-primary btn-sm" style="text-align: right; background-color: #6CE0C5; border: none;"
+                data-tooltip="Edit" (click)="editBook(book?._id)">
+                <i class="fa fa-edit"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+        <tbody *ngIf="books && books.length == 0">
+          <tr>
+            <td colspan="5" style="text-align: center;">No data found.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

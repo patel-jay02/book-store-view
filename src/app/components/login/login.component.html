@@ -1,0 +1,29 @@
+<div class="container">
+    <div class="row justify-content-center mt-5">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header">Login</div>
+          <div class="card-body">
+            <form [formGroup]="loginForm" (ngSubmit)="login()">
+              <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" class="form-control" id="username" formControlName="username">
+                <div *ngIf="formControls.username.invalid && (formControls.username.dirty || formControls.username.touched)" class="text-danger">
+                  <div *ngIf="formControls.username.errors?.['required']">Username is required</div>
+                </div>
+              </div>
+              <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" formControlName="password">
+                <div *ngIf="formControls.password.invalid && (formControls.password.dirty || formControls.password.touched)" class="text-danger">
+                  <div *ngIf="formControls.password.errors?.['required']">Password is required</div>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-primary">Login</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
