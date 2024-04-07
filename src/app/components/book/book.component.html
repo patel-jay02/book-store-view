@@ -10,8 +10,8 @@
       </div>
       <div class="col-sm-6" style="padding: 30px 10px 0px 10px !important;">
         <div class="float-right" style="text-align: right;">
-          <button type="button" style="background-color: #D8263B; border: none;" class="btn btn-primary" routerLink="/book/add/0"><i
-              style="color: white;" class="fa fa-plus"></i></button> &nbsp;
+          <button type="button" style="background-color: #D8263B; border: none;" class="btn btn-primary"
+            routerLink="/book/add/0"><i style="color: white;" class="fa fa-plus"></i></button> &nbsp;
         </div>
       </div>
     </div>
@@ -25,26 +25,15 @@
             <th>Author</th>
             <th>Description</th>
             <th>Price</th>
-            <th>Action</th>
           </tr>
         </thead>
         <tbody *ngIf="books && books.length > 0">
-          <tr *ngFor="let book of books; let i = index">
-            <td>{{i+1}}</td>
+          <tr *ngFor="let book of getPaginatedBooks(); let i = index">
+            <td>{{ (currentPage - 1) * pageSize + i + 1 }}</td>
             <td><a routerLink="/book/details/{{book._id}}">{{ book.name }}</a></td>
             <td>{{ book.author }}</td>
             <td>{{ book.description }}</td>
-            <td>{{ book.price | currency: "INR"  }}</td>
-            <td>
-              <button class="float-right btn btn-primary btn-sm" style="text-align: right; background-color: #D8263B; border: none;"
-                data-tooltip="Delete" (click)="deleteBookConfirm(book?._id)">
-                <i style="color: white;" class="fa fa-trash"></i>
-              </button> &nbsp;
-              <button class="float-right btn btn-primary btn-sm" style="text-align: right; background-color: #6CE0C5; border: none;"
-                data-tooltip="Edit" (click)="editBook(book?._id)">
-                <i class="fa fa-edit"></i>
-              </button>
-            </td>
+            <td>{{ book.price | currency: "INR" }}</td>
           </tr>
         </tbody>
         <tbody *ngIf="books && books.length == 0">
@@ -53,6 +42,13 @@
           </tr>
         </tbody>
       </table>
+    </div>
+    <div class="col-sm-12" *ngIf=" books && books.length != 0">
+      <ul class="pagination justify-content-center">
+        <li class="page-item" *ngFor="let page of getPages()" [class.active]="page === currentPage">
+          <a class="page-link pagination-link" (click)="onPageChange(page)">{{ page }}</a>
+        </li>
+      </ul>
     </div>
   </div>
 </div>

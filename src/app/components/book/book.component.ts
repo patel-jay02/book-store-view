@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
 import { BookService } from 'src/app/services/book.service';
-import { BookDeleteConfirmationDialogComponent } from './book-delete-confirmation-dialog/book-delete-confirmation-dialog.component';
-import { NotificationService } from 'src/app/services/notification.service';
 
 @Component({
   selector: 'app-book',
@@ -12,17 +9,17 @@ import { NotificationService } from 'src/app/services/notification.service';
 })
 export class BookComponent implements OnInit {
   books: any[] = [];
+  pageSize: number = 10;
+  currentPage: number = 1;
 
   constructor(
     public dialog: MatDialog,
-    private  bookService: BookService,
-    private router: Router,
-    private notificationService: NotificationService
+    private bookService: BookService
   ) {
   }
 
   ngOnInit(): void {
-   this.getBooks();
+    this.getBooks();
   }
 
   getBooks() {
@@ -33,31 +30,17 @@ export class BookComponent implements OnInit {
     });
   }
 
-  editBook(_id: any) {
-    this.router.navigate([`book/edit/${_id}`]);
+  onPageChange(pageNumber: number) {
+    this.currentPage = pageNumber;
   }
 
-  deleteBook(_id: any) {
-    this.bookService.deleteBook(_id).subscribe(data => {
-      if (data.result) {
-        this.notificationService.success('Book Deleted Successfully');
-        this.getBooks();
-      }
-    });
+  getPages(): number[] {
+    const pageCount = Math.ceil(this.books.length / this.pageSize);
+    return new Array(pageCount).fill(0).map((_, index) => index + 1);
   }
 
-  deleteBookConfirm(_id: any) {
-    const dialogRef = this.dialog.open(BookDeleteConfirmationDialogComponent, {
-      width: '400px',
-      data: { message: 'Are you sure you want to delete this book?' }
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.deleteBook(_id);
-      } else {
-        this.router.navigate(['']);
-      }
-    });
+  getPaginatedBooks(): any[] {
+    const startIndex = (this.currentPage - 1) * this.pageSize;
+    return this.books.slice(startIndex, startIndex + this.pageSize);
   }
 }

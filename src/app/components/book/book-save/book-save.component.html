@@ -109,12 +109,14 @@
                     <button mat-raised-button (click)="submitForm()" style="background-color: #6CE0C5; border: none;" class="btn btn-primary btn-user btn-block">
                         Save
                     </button> &nbsp;
-                    <button mat-raised-button (click)="back()" style="background-color: #D8263B;" class="btn btn-danger btn-user btn-block">
+                    <button *ngIf="_id == '0' || _id == undefined" mat-raised-button (click)="back()" style="background-color: #D8263B;" class="btn btn-danger btn-user btn-block">
+                        Cancel
+                    </button>
+                    <button *ngIf="_id != '0' && _id != undefined" mat-raised-button (click)="oneStepBack()" style="background-color: #D8263B;" class="btn btn-danger btn-user btn-block">
                         Cancel
                     </button>
                 </div>
             </div>
         </div>
     </form>
-
 </div>

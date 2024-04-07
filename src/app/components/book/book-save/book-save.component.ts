@@ -80,4 +80,8 @@ export class BookSaveComponent implements OnInit {
     this.router.navigate(['']);
   }
 
+  oneStepBack() {
+    this.router.navigate([`book/details/${this._id}`]);
+  }
+
 }

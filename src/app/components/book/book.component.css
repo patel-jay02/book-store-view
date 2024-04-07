@@ -1,0 +1,10 @@
+.pagination-link {
+    background-color: white;
+    color: #D8263B;
+  }
+  
+  .pagination-link.active {
+    background-color: #D8263B;
+    border-color: #D8263B;
+    color: white;
+  }
