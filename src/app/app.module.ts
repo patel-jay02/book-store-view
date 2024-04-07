@@ -9,7 +9,6 @@ import { LoginComponent } from './components/login/login.component';
 import { AuthService } from './services/auth.service';
 import { AuthGuard } from './guards/auth.guard'; // Import AuthGuard
 import { CommonModule } from '@angular/common';
-import { BookComponent } from './components/book/book.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthInterceptor } from './interceptor/auth.interceptor';
 import { ToastrModule } from 'ngx-toastr';
